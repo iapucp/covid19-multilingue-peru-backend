@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  backend:
+    restart: always
+    build: .
+    command: ['bash']
+    volumes:
+      - .:/var/task
+      - ~/.aws/:/root/.aws
+    ports:
+      - "80:80"
+    env_file:
+      - corona_api/.env
+  db:
+    image: amazon/dynamodb-local
+    ports:
+      - "8000:8000"
