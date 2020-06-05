@@ -3,6 +3,10 @@
 import os
 import sys
 
+from dotenv import find_dotenv, load_dotenv
+
+load_dotenv(find_dotenv())
+
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'corona_api.settings')
