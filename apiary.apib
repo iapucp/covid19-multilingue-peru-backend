@@ -1,0 +1,119 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Translate-Covid19
+
+API para el apoyo en la traducción de textos informativos sobre el COVID-19 en las diversas lenguas del Perú.
+
+## Languages [/language]
+
+### List Languages [GET]
+
++ Request (application/json)
+    + Headers 
+    
+            Authentication: Basic gZYoJ89ib/hDuTXy4rJjQS0nyiMTcXwBtocEPQMy/BY=
+    
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "description": "Achuar"
+            },
+            {
+                "id": "2",
+                "description": "Aimara"
+            },
+            {
+                "id": "3",
+                "description": "Quechua"
+            }
+        ]
+        
+        
+### List Sub Language [GET /language/id/]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Basic gZYoJ89ib/hDuTXy4rJjQS0nyiMTcXwBtocEPQMy/BY=
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "description": "Quechua de Cajamarca"
+            }
+        ]
+        
+
+## Sentences [/sentence?count={count}&after={last_id}]
+
+### Get a random sentence [GET]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Basic gZYoJ89ib/hDuTXy4rJjQS0nyiMTcXwBtocEPQMy/BY=
+
++ Response 200 (application/json)
+
+        {
+            "id": "1234",
+            "description": "Para el caso de personas en condición de indigencia que haya fallecido por COVID-19 o ser caso sospechoso y no cuenten con un seguro salud, el financiamiento para su cremación o inhumación será asumido por el Seguro Integral de Salud (SIS), quien realizará las acciones administrativas y financieras que correspondan para la cremación o inhumación."
+        }
+    
+
+
+
+### Create a New Translation [POST]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Basic gZYoJ89ib/hDuTXy4rJjQS0nyiMTcXwBtocEPQMy/BY=
+            
+    + Body
+
+            {
+                "sentence_id": "1111",
+                "language_id": "123",
+                "description": "this is a translation!"
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
+            
+            
+# Data Structures
+
+## Basic Authentication (object)
++ `Authentication`: `Basic Fooo`
